@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+  <head></head>
+  <body>
+    <h1>foo</h1>
+    <iframe id="bar" src="http://bar.foo.lvh.me:3002/"></iframe>
+    <script type="text/javascript">
+      //set foo.lvh.me cookie:
+    document.cookie = "foo1=1337";
+
+    document.domain = document.domain;
+
+    var bar = document.getElementById("bar");
+
+    bar.onload = function() {
+
+      //set foo.lvh.me cookie to bar.foo.lvh.me cookie:
+      document.cookie = "bar_cookies="
+        +String(bar.contentDocument.cookie).replace(/=/g,':')
+        .replace(/;/,',');
+
+      //set bar.foo.lvh.me cookie:
+      bar.contentDocument.cookie = "foo=was here";
+
+    };
+</script>
+  </body>
+</html>

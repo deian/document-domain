@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+  <head></head>
+  <body>
+    <h1>bar.foo</h1>
+    <script type="text/javascript">
+      //set bar.foo.lvh.me cookie:
+    document.cookie = "bar1=42";
+
+    document.domain = "foo.lvh.me";
+
+    document.cookie = "effective_should_be=foo";
+
+    var foo = parent.document;
+
+
+    //set foo.lvh.me cookie:
+    foo.cookie = "bar=was here";
+
+    //set bar.foo.lvh.me cookie to foo.lvh.me cookie:
+    document.cookie = "foo_cookies="
+    +String(foo.cookie).replace(/=/g,':').replace(/;/,',');
+    </script>
+  </body>
+</html>
